@@ -3,6 +3,11 @@ const app = express();
 const Post = require("./api/models/posts");
 const postsData = new Post();
 
+app.use((req, res, next) => {
+    res.setHeader("Access-Control-Allow-Orgin", "*")
+    next();
+})
+
 app.get("/api/posts", (req, res) => {
 	res.status(200).send(postsData.get());
 });
