@@ -4,9 +4,11 @@ const Post = require("./api/models/posts");
 const postsData = new Post();
 
 app.use((req, res, next) => {
-    res.setHeader("Access-Control-Allow-Orgin", "*")
+    res.setHeader("Access-Control-Allow-Origin", "*");
     next();
-})
+});
+
+app.use('/uploads', express.static('uploads'));
 
 app.get("/api/posts", (req, res) => {
 	res.status(200).send(postsData.get());
@@ -23,4 +25,4 @@ app.get("/api/posts/:post_id", (req, res) => {
 });
 
 
-app.listen(3003, () => console.log("listening on http://localhost:3003"));
+app.listen(3000, () => console.log("listening on http://localhost:3000"));
